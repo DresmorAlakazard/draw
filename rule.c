@@ -1,5 +1,8 @@
 #include "rule.h"
 
+#define MIN(a, b) (a < b ? a : b)
+#define MAX(a, b) (a > b ? a : b)
+
 static void triangles (
     unsigned char *map,
     int iframe,
@@ -10,6 +13,21 @@ static void triangles (
 ) {
     fx *= 100.0;
     fy *= 100.0;
+
+    double diff   = MAX (fy, fx) - MIN (fy, fx);
+    double step   = diff * fframe;
+    double left   = fy + (fy < fx ? step : -step);
+    double right  = fx + (fx < fy ? step : -step);
+    double rot    = left / right;
+
+    double c = cos (rot);
+    double s = sin (rot);
+
+    double ftx = fx * c + fy * s;
+    double fty = fx * s - fy * c;
+
+    fx = ftx;
+    fy = fty;
     
     double v = fabs (fmod (fabs (fx + fmod (floor (fy + (fy > 0.0 ? 0.0 : 1.0)), 2.0)), 2.0) - 1.0);
     double u = fmod (fabs (fy), 1.0);

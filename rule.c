@@ -4,6 +4,8 @@
 
 /* OTHER RULES BEGIN *********************************************************/
 
+static const int redFades = 5;
+
 static void xcpara (
     unsigned char *map,
     int iframe,
@@ -14,7 +16,12 @@ static void xcpara (
 ) {
     int i;
     double r;
-    double n = floor (log (abs (fy)) / log (2.0));
+    double n;
+
+    fx /= pow (2.0, fframe * redFades);
+    fy /= pow (2.0, fframe * redFades);
+    
+    n = floor (log (abs (fy)) / log (2.0));
 
     for (i = 0; i < 256; ++i, ++n) {
         r = pow (2.0, n);
@@ -24,7 +31,7 @@ static void xcpara (
         }
     }
 
-    pixel[0] = fmod (n / 5.0, 1.0) * 255;
+    pixel[0] = fmod (n / redFades, 1.0) * 255;
 }
 
 /* OTHER RULES END ***********************************************************/

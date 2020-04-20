@@ -11,14 +11,14 @@ static void triangles (
     int ix, int iy,
     double fx, double fy
 ) {
-    fx *= 100.0;
-    fy *= 100.0;
+    fx *= 6.0;
+    fy *= 6.0;
 
     double diff   = MAX (fy, fx) - MIN (fy, fx);
     double step   = diff * fframe;
     double left   = fy + (fy < fx ? step : -step);
     double right  = fx + (fx < fy ? step : -step);
-    double rot    = left / right;
+    double rot    = (left / right) * 3.14;
 
     double c = cos (rot);
     double s = sin (rot);

@@ -1,6 +1,8 @@
 #ifndef RULE_H
 #define RULE_H
 
+#include <math.h>
+
 void rule (
     unsigned char *map,
     int iframe,

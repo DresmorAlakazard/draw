@@ -14,7 +14,7 @@ int main (void) {
     double fframeStep = 1.0 / frames, fxStep = 2.0 / width, fyStep = 2.0 / height;
     unsigned int error;
     char filename[260];
-    double faspectRatio = 1.0;
+    double faspectRatio;
 
     if (aspect) {
         faspectRatio = (double) height / width;

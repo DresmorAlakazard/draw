@@ -8,20 +8,18 @@ static void triangles (
     int ix, int iy,
     double fx, double fy
 ) {
-    fx *= 4.0;
-    fy *= 4.0;
+    fx *= 100.0;
+    fy *= 100.0;
+    
+    double v = fabs (fmod (fabs (fx + fmod (floor (fy + (fy > 0.0 ? 0.0 : 1.0)), 2.0)), 2.0) - 1.0);
+    double u = fmod (fabs (fy), 1.0);
 
-    double v = fmod (fabs (fx), 2.0);
-    double u = fy;
-
-    double tmp = v - u;
-
-    if (tmp < .1 && tmp > -.1) {
+    if (fy > 0.0 ? v > u : v < u) {
         pixel[0] = 255;
     }
 
     /* "Help center..." */
-    #if 1
+    #if 0
     if (fy < 1.1 && fy > 0.9 && fx < 1.1 && fx > 0.9) {
         pixel[2] = 255;
     }

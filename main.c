@@ -13,6 +13,12 @@ int main (void) {
     double fframeStep = 1.0 / frames, fxStep = 2.0 / width, fyStep = 2.0 / height;
     unsigned int error;
     char filename[260];
+    double faspectRatio = 1.0;
+
+    if (aspect) {
+        faspectRatio = (double) height / width;
+        /* fxStep /= (double) height / width; */
+    }
 
     for (iframe = 0; iframe < frames; ++iframe, fframe += fframeStep) {
         index = 0;
@@ -25,7 +31,7 @@ int main (void) {
                     fframe,
                     &map[index],
                     ix, iy,
-                    fx, fy
+                    fx / faspectRatio, fy
                 );
             }
         }

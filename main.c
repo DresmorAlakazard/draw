@@ -10,8 +10,8 @@ int main (void) {
     unsigned char *map = (unsigned char*) malloc (width * height * channels);
     int iframe, index, ix, iy;
     double fframe, fx, fy;
-    double fxStart = -1.0;
-    double fframeStep = 1.0 / frames, fxStep = 2.0 / width, fyStep = 2.0 / height;
+    double fxStart = -1.0, fyStart = 1.0;
+    double fframeStep = 1.0 / frames, fxStep = 2.0 / width, fyStep = -2.0 / height;
     unsigned int error;
     char filename[260];
     double faspectRatio;
@@ -25,7 +25,7 @@ int main (void) {
     for (iframe = 0; iframe < frames; ++iframe, fframe += fframeStep) {
         index = 0;
         
-        for (iy = 0, fy = -1.0; iy < height; ++iy, fy += fyStep) {
+        for (iy = 0, fy = fyStart; iy < height; ++iy, fy += fyStep) {
             for (ix = 0, fx = fxStart; ix < width; ++ix, fx += fxStep, index += channels) {
                 rule (
                     map,

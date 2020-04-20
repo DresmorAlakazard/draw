@@ -10,6 +10,7 @@ int main (void) {
     unsigned char *map = (unsigned char*) malloc (width * height * channels);
     int iframe, index, ix, iy;
     double fframe, fx, fy;
+    double fxStart = -1.0;
     double fframeStep = 1.0 / frames, fxStep = 2.0 / width, fyStep = 2.0 / height;
     unsigned int error;
     char filename[260];
@@ -17,21 +18,22 @@ int main (void) {
 
     if (aspect) {
         faspectRatio = (double) height / width;
-        /* fxStep /= (double) height / width; */
+        fxStep /= faspectRatio;
+        fxStart /= faspectRatio;
     }
 
     for (iframe = 0; iframe < frames; ++iframe, fframe += fframeStep) {
         index = 0;
         
         for (iy = 0, fy = -1.0; iy < height; ++iy, fy += fyStep) {
-            for (ix = 0, fx = -1.0; ix < width; ++ix, fx += fxStep, index += channels) {
+            for (ix = 0, fx = fxStart; ix < width; ++ix, fx += fxStep, index += channels) {
                 rule (
                     map,
                     iframe,
                     fframe,
                     &map[index],
                     ix, iy,
-                    fx / faspectRatio, fy
+                    fx, fy
                 );
             }
         }

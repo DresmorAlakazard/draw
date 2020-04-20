@@ -3,7 +3,7 @@
 
 #include <math.h>
 
-static void xcpara (
+void rule (
     unsigned char *map,
     int iframe,
     double fframe,

@@ -4,7 +4,7 @@
 
 /* OTHER RULES BEGIN *********************************************************/
 
-static const int redFades = 5;
+static const int redFades = 3;
 
 static void xcpara (
     unsigned char *map,

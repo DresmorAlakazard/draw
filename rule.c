@@ -33,9 +33,14 @@ void rule (
 
     if (pass) {
         pixel[0] = 255;
+        pixel[1] = 200;
+        pixel[2] = 48;
         pixel[3] = 255;
     } else {
-        pixel[3] = 0;
+        pixel[0] = 204;
+        pixel[1] = 150;
+        pixel[2] = 0; /* (1.0 / pow (fabs (x), fabs (y))) * 20.0; */
+        pixel[3] = 255;
     }
 
     #if 0

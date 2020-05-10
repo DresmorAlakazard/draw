@@ -10,8 +10,8 @@ void rule (
     int ix, int iy,
     double fx, double fy
 ) {
-    double x = fx * 5.0;
-    double y = fy * 5.0;
+    double x = fx * (144.0 / 8.0);
+    double y = fy * (144.0 / 8.0);
 
     #if 0
     int pass = 1;
@@ -28,7 +28,7 @@ void rule (
     double x2 = fmod (fabs ((x0 * nx) - 1.0), 1.0);
     double y2 = fmod (fabs ((y0 * ny) - 1.0), 1.0);
 
-    int pass = x1 * x1 + y1 * y1 <= 0.5 || x2 * x2 + y2 * y2 <= 0.5;
+    int pass = x1 * x1 + y1 * y1 <= 0.375 || x2 * x2 + y2 * y2 <= 0.375;
     #endif
 
     if (pass) {
